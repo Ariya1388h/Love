@@ -46,7 +46,7 @@ function changeText() {
         messageElement.className = `lang-${currentLanguage.lang}`;
         messageElement.style.animation = 'smoothFade 0.25s ease-in-out';
 
-        let pauseTime = 4500;
+        let pauseTime = 500;
 
         currentIndex = (currentIndex + 1) % languages.length;
 
