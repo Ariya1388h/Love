@@ -58,10 +58,9 @@ document.addEventListener('click', () => {
         currentIndex = 1;
         
         try {
+            // Unmute and fade in
+            audio.muted = false;
             audio.volume = 0.1;
-            
-            // Reset audio for replay capability
-            audio.currentTime = 0;
             
             const playPromise = audio.play();
             
@@ -99,10 +98,9 @@ document.addEventListener('touchstart', () => {
         currentIndex = 1;
         
         try {
+            // Unmute and fade in
+            audio.muted = false;
             audio.volume = 0.1;
-            
-            // Reset audio for replay capability
-            audio.currentTime = 0;
             
             const playPromise = audio.play();
             
