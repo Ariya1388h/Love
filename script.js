@@ -65,7 +65,14 @@ function startExperience() {
         isRunning = true;
         currentIndex = 1;
         
-        // Unmute the already-playing audio
+        // If audio is already playing, just unmute
+        // If not, restart it
+        if (audio.paused) {
+            audio.currentTime = 0;
+            audio.play().catch(err => console.error('Play error:', err));
+        }
+        
+        // Unmute and fade in
         audio.muted = false;
         audio.volume = 0;
         
