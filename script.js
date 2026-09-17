@@ -55,21 +55,22 @@ function changeText() {
 document.addEventListener('click', () => {
     if (!isRunning) {
         isRunning = true;
-        
-        // Start from next language (skip initial Persian)
         currentIndex = 1;
         
-        // Play music with fade in
         try {
-            audio.volume = 0.1; // Start at low volume
+            audio.volume = 0.1;
+            
+            // Reset audio for replay capability
+            audio.currentTime = 0;
+            
             const playPromise = audio.play();
             
             if (playPromise !== undefined) {
                 playPromise
                     .then(() => {
-                        console.log('✓ Music playing successfully');
+                        console.log('✓ Music playing');
                         
-                        // Fade in the volume gradually
+                        // Fade in volume
                         let volumeLevel = 0.1;
                         const fadeInInterval = setInterval(() => {
                             if (volumeLevel < 1) {
@@ -81,11 +82,11 @@ document.addEventListener('click', () => {
                         }, 50);
                     })
                     .catch((error) => {
-                        console.error('✗ Audio playback error:', error.message);
+                        console.error('✗ Playback error:', error.message);
                     });
             }
         } catch (error) {
-            console.error('✗ Error trying to play audio:', error);
+            console.error('✗ Error:', error);
         }
         
         changeText();
@@ -95,21 +96,22 @@ document.addEventListener('click', () => {
 document.addEventListener('touchstart', () => {
     if (!isRunning) {
         isRunning = true;
-        
-        // Start from next language (skip initial Persian)
         currentIndex = 1;
         
-        // Play music with fade in
         try {
-            audio.volume = 0.1; // Start at low volume
+            audio.volume = 0.1;
+            
+            // Reset audio for replay capability
+            audio.currentTime = 0;
+            
             const playPromise = audio.play();
             
             if (playPromise !== undefined) {
                 playPromise
                     .then(() => {
-                        console.log('✓ Music playing successfully');
+                        console.log('✓ Music playing');
                         
-                        // Fade in the volume gradually
+                        // Fade in volume
                         let volumeLevel = 0.1;
                         const fadeInInterval = setInterval(() => {
                             if (volumeLevel < 1) {
@@ -121,11 +123,11 @@ document.addEventListener('touchstart', () => {
                         }, 50);
                     })
                     .catch((error) => {
-                        console.error('✗ Audio playback error:', error.message);
+                        console.error('✗ Playback error:', error.message);
                     });
             }
         } catch (error) {
-            console.error('✗ Error trying to play audio:', error);
+            console.error('✗ Error:', error);
         }
         
         changeText();

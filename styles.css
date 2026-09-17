@@ -224,15 +224,40 @@ body::before {
 /* Mobile responsiveness */
 @media (max-width: 768px) {
     #message {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
         letter-spacing: 1px;
+        min-height: 3rem;
+    }
+    
+    #language-name {
+        font-size: 0.65rem;
+        margin-top: 10px;
     }
 }
 
 @media (max-width: 480px) {
     #message {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
         letter-spacing: 0.5px;
+        min-height: 2.5rem;
+    }
+    
+    #message.lang-chinese {
+        font-size: 1.5rem;
+    }
+    
+    #message.lang-arabic-1, #message.lang-arabic-2 {
+        font-size: 1.5rem;
+    }
+    
+    #message.lang-russian {
+        font-size: 1.3rem;
+    }
+    
+    #language-name {
+        font-size: 0.55rem;
+        margin-top: 8px;
+        min-height: 1rem;
     }
     
     .container {
