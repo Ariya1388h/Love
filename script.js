@@ -33,8 +33,31 @@ console.log('Audio sources:', audio.querySelectorAll('source'));
 
 // Ensure audio loads on page load
 window.addEventListener('load', () => {
-    console.log('Page loaded, audio ready state:', audio.readyState);
+    console.log('Page loaded, starting audio...');
     audio.load();
+    
+    // Attempt to play immediately
+    setTimeout(() => {
+        audio.muted = true;
+        const playPromise = audio.play();
+        
+        if (playPromise !== undefined) {
+            playPromise
+                .then(() => {
+                    console.log('✓ Audio playing (muted)');
+                    
+                    // Unmute after 1 second
+                    setTimeout(() => {
+                        audio.muted = false;
+                        audio.volume = 0.5;
+                        console.log('✓ Audio unmuted');
+                    }, 1000);
+                })
+                .catch(err => {
+                    console.error('✗ Autoplay blocked:', err);
+                });
+        }
+    }, 100);
 });
 
 // Function to change the text with animation and font
@@ -65,27 +88,18 @@ function startExperience() {
         isRunning = true;
         currentIndex = 1;
         
-        // If audio is already playing, just unmute
-        // If not, restart it
+        // Make sure audio is playing
         if (audio.paused) {
-            audio.currentTime = 0;
+            audio.muted = true;
             audio.play().catch(err => console.error('Play error:', err));
+            
+            // Unmute after playing starts
+            setTimeout(() => {
+                audio.muted = false;
+                audio.volume = 0.5;
+                console.log('Audio playing from tap');
+            }, 500);
         }
-        
-        // Unmute and fade in
-        audio.muted = false;
-        audio.volume = 0;
-        
-        // Fade in volume
-        let volumeLevel = 0;
-        const fadeInInterval = setInterval(() => {
-            if (volumeLevel < 1) {
-                volumeLevel += 0.05;
-                audio.volume = Math.min(volumeLevel, 1);
-            } else {
-                clearInterval(fadeInInterval);
-            }
-        }, 50);
         
         changeText();
     }
