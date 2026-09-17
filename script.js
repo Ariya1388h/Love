@@ -31,6 +31,12 @@ let isRunning = false;
 console.log('Audio element:', audio);
 console.log('Audio sources:', audio.querySelectorAll('source'));
 
+// Ensure audio loads on page load
+window.addEventListener('load', () => {
+    console.log('Page loaded, audio ready state:', audio.readyState);
+    audio.load();
+});
+
 // Function to change the text with animation and font
 function changeText() {
     if (!isRunning) return;
