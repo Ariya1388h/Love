@@ -1,0 +1,241 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Font imports from local files */
+@font-face {
+    font-family: 'Bickham Script Pro';
+    src: url('fonts/BickhamScriptPro.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'FZKai-Z03';
+    src: url('fonts/FZKai-Z03.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Aref Ruqaa';
+    src: url('fonts/ArefRuqaa.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lobster';
+    src: url('fonts/Lobster.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'UTM Aquarelle';
+    src: url('fonts/UTMAquarelle.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Shekasteh';
+    src: url('fonts/Shekasteh.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Noto Serif KR';
+    src: url('fonts/NotoSerifKR.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Playfair Display Russian';
+    src: url('fonts/PlayfairDisplayRussian.ttf') format('truetype');
+}
+
+body {
+    background: linear-gradient(135deg, #3d0814 0%, #5c1428 25%, #3d0814 50%, #2a050f 75%, #3d0814 100%);
+    background-size: 400% 400%;
+    animation: ambientGradient 15s ease infinite;
+    font-family: 'Bickham Script Pro', cursive;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    filter: blur(0.3px);
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(0, 0, 0, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+@keyframes ambientGradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.text-display {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    min-height: 200px;
+}
+
+#language-name {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 15px;
+    margin-bottom: 0;
+    padding: 0;
+    letter-spacing: 1px;
+    font-weight: 300;
+    font-family: 'Playfair Display', serif;
+    min-height: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    line-height: 1.2;
+}
+
+#message {
+    font-size: 4rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: white;
+    margin: 0;
+    padding: 0;
+    animation: smoothFade 0.25s ease-in-out;
+    font-family: 'Bickham Script Pro', cursive;
+    text-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+    min-height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    line-height: 1.2;
+}
+
+/* Individual font styles for each language */
+#message.lang-english-1, #message.lang-english-2 {
+    font-family: 'Bickham Script Pro', cursive !important;
+}
+
+#message.lang-chinese {
+    font-family: 'FZKai-Z03', serif !important;
+}
+
+#message.lang-spanish {
+    font-family: 'Bickham Script Pro', cursive !important;
+}
+
+#message.lang-arabic-1, #message.lang-arabic-2 {
+    font-family: 'Aref Ruqaa', serif !important;
+}
+
+#message.lang-french {
+    font-family: 'Bickham Script Pro', cursive !important;
+}
+
+#message.lang-portuguese {
+    font-family: 'Bickham Script Pro', cursive !important;
+}
+
+#message.lang-russian {
+    font-family: 'Playfair Display Russian', serif !important;
+    font-size: 3.5rem !important;
+}
+
+#message.lang-indonesian {
+    font-family: 'Bickham Script Pro', cursive !important;
+}
+
+#message.lang-german {
+    font-family: 'Bickham Script Pro', cursive !important;
+}
+
+#message.lang-vietnamese {
+    font-family: 'UTM Aquarelle', cursive !important;
+}
+
+#message.lang-hausa {
+    font-family: 'Bickham Script Pro', cursive !important;
+}
+
+#message.lang-turkish {
+    font-family: 'Bickham Script Pro', cursive !important;
+}
+
+#message.lang-swahili {
+    font-family: 'Bickham Script Pro', cursive !important;
+}
+
+#message.lang-tagalog {
+    font-family: 'Bickham Script Pro', cursive !important;
+}
+
+#message.lang-persian {
+    font-family: 'Shekasteh', serif !important;
+    font-size: 3.5rem !important;
+}
+
+#message.lang-korean {
+    font-family: 'Noto Serif KR', serif !important;
+}
+
+#message.lang-javanese {
+    font-family: 'Bickham Script Pro', cursive !important;
+}
+
+@keyframes smoothFade {
+    0% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    #message {
+        font-size: 2.5rem;
+        letter-spacing: 1px;
+    }
+}
+
+@media (max-width: 480px) {
+    #message {
+        font-size: 1.8rem;
+        letter-spacing: 0.5px;
+    }
+    
+    .container {
+        padding: 10px;
+    }
+}
