@@ -27,6 +27,10 @@ const languageNameElement = document.getElementById('language-name');
 const audio = document.getElementById('bgMusic');
 let isRunning = false;
 
+// Debug audio element
+console.log('Audio element:', audio);
+console.log('Audio sources:', audio.querySelectorAll('source'));
+
 // Function to change the text with animation and font
 function changeText() {
     if (!isRunning) return;
@@ -39,12 +43,10 @@ function changeText() {
         messageElement.className = `lang-${currentLanguage.lang}`;
         messageElement.style.animation = 'smoothFade 0.25s ease-in-out';
         
-        // Determine pause duration based on language
-        let pauseTime = 200; // same pause for all languages
+        let pauseTime = 200;
         
         currentIndex = (currentIndex + 1) % languages.length;
         
-        // Schedule next change with appropriate delay
         if (isRunning) {
             setTimeout(changeText, pauseTime);
         }
@@ -52,85 +54,32 @@ function changeText() {
 }
 
 // Start switching when user taps on the website
-document.addEventListener('click', () => {
+function startExperience() {
     if (!isRunning) {
         isRunning = true;
         currentIndex = 1;
         
-        try {
-            // Unmute and fade in
-            audio.muted = false;
-            audio.volume = 0.1;
-            
-            const playPromise = audio.play();
-            
-            if (playPromise !== undefined) {
-                playPromise
-                    .then(() => {
-                        console.log('✓ Music playing');
-                        
-                        // Fade in volume
-                        let volumeLevel = 0.1;
-                        const fadeInInterval = setInterval(() => {
-                            if (volumeLevel < 1) {
-                                volumeLevel += 0.05;
-                                audio.volume = Math.min(volumeLevel, 1);
-                            } else {
-                                clearInterval(fadeInInterval);
-                            }
-                        }, 50);
-                    })
-                    .catch((error) => {
-                        console.error('✗ Playback error:', error.message);
-                    });
+        // Unmute the already-playing audio
+        audio.muted = false;
+        audio.volume = 0;
+        
+        // Fade in volume
+        let volumeLevel = 0;
+        const fadeInInterval = setInterval(() => {
+            if (volumeLevel < 1) {
+                volumeLevel += 0.05;
+                audio.volume = Math.min(volumeLevel, 1);
+            } else {
+                clearInterval(fadeInInterval);
             }
-        } catch (error) {
-            console.error('✗ Error:', error);
-        }
+        }, 50);
         
         changeText();
     }
-});
+}
 
-document.addEventListener('touchstart', () => {
-    if (!isRunning) {
-        isRunning = true;
-        currentIndex = 1;
-        
-        try {
-            // Unmute and fade in
-            audio.muted = false;
-            audio.volume = 0.1;
-            
-            const playPromise = audio.play();
-            
-            if (playPromise !== undefined) {
-                playPromise
-                    .then(() => {
-                        console.log('✓ Music playing');
-                        
-                        // Fade in volume
-                        let volumeLevel = 0.1;
-                        const fadeInInterval = setInterval(() => {
-                            if (volumeLevel < 1) {
-                                volumeLevel += 0.05;
-                                audio.volume = Math.min(volumeLevel, 1);
-                            } else {
-                                clearInterval(fadeInInterval);
-                            }
-                        }, 50);
-                    })
-                    .catch((error) => {
-                        console.error('✗ Playback error:', error.message);
-                    });
-            }
-        } catch (error) {
-            console.error('✗ Error:', error);
-        }
-        
-        changeText();
-    }
-});
+document.addEventListener('click', startExperience);
+document.addEventListener('touchstart', startExperience);
 
 // Play audio when page loads
 window.addEventListener('load', () => {
