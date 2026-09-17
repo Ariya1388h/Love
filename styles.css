@@ -168,7 +168,6 @@ body::before {
 
 #message.lang-russian {
     font-family: 'Playfair Display Russian', serif !important;
-    font-size: 3rem !important;
 }
 
 #message.lang-indonesian {
@@ -201,7 +200,6 @@ body::before {
 
 #message.lang-persian {
     font-family: 'Shekasteh', serif !important;
-    font-size: 3.5rem !important;
 }
 
 #message.lang-korean {
